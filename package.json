@@ -6,7 +6,7 @@
   "author": "Jacob Ho",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint . --fix",
+    "lint": "eslint . --fix && prettier . --write",
     "test": "jest"
   },
   "devDependencies": {
