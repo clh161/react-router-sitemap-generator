@@ -1,5 +1,6 @@
-
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Route, Switch } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import React from 'react';
 
 export default function Router() {
