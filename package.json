@@ -4,5 +4,10 @@
   "main": "index.js",
   "repository": "https://github.com/clh161/react-router-sitemap-generator",
   "author": "Jacob Ho",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1"
+  }
 }
