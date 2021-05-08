@@ -1,0 +1,8 @@
+{
+  "name": "react-router-sitemap-generator",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/clh161/react-router-sitemap-generator",
+  "author": "Jacob Ho",
+  "license": "MIT"
+}
