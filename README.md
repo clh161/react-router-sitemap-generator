@@ -1,5 +1,8 @@
 # react-router-sitemap-generator
 
+![Master](https://github.com/clh161/react-router-sitemap-generator/actions/workflows/main.yml/badge.svg?branch=master)
+[![npm package](https://img.shields.io/npm/v/react-router-sitemap-generator.svg?style=flat-square)](https://www.npmjs.org/package/react-router-sitemap-generator)
+[![npm](https://img.shields.io/npm/dm/react-router-sitemap-generator.svg)](https://www.npmjs.com/package/react-router-sitemap-generator)
 
 Generate `sitemap.xml` from [react-router](https://github.com/ReactTraining/react-router).
 
