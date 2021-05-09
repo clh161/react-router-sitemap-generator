@@ -72,5 +72,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - uses: actions/setup-node@v1
+      - run: yarn install
       - run: yarn flow-typed
       - run: yarn run flow
