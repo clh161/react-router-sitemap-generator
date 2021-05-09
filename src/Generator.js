@@ -25,15 +25,15 @@ export default class Generator {
       const component = components.pop();
       const { props } = component;
       if (props != null) {
-        const {
-          children: nestedComponent,
-          path,
-          component: propsComponents,
-        } = props;
+        const { path, component: propsComponents } = props;
+        React.Children.forEach(component.props.children, (child) => {
+          if (React.isValidElement(child)) {
+            components.push(...this._getComponents(child));
+          }
+        });
         if (path != null && component.type.name === 'Route') {
           this._paths.push(path);
         }
-        components.push(...this._getComponents(nestedComponent));
         components.push(
           ...this._getComponents(propsComponents?.({ match: { url: path } }))
         );
