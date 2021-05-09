@@ -4,13 +4,13 @@ const fs = require('fs');
 const convertor = require('xml-js');
 import React from 'react';
 
-const DEFAULT_XML_CONFIG = {
+const DEFAULT_CONFIG = {
   lastmod: new Date().toISOString().slice(0, 10),
   changefreq: 'monthly',
   priority: 0.8,
 };
 
-export type XmlConfig = {
+export type Config = {
   lastmod?: string,
   changefreq?: string,
   priority?: number,
@@ -19,23 +19,25 @@ export type XmlConfig = {
 export default class Generator {
   _baseUrl: string;
   _baseComponent: () => any;
+  _config: ?Config;
 
-  constructor(baseUrl: string, baseComponent: any) {
+  constructor(baseUrl: string, baseComponent: any, config?: Config) {
     if (!React.isValidElement(baseComponent)) {
       throw 'Invalid component. Try `Router()` instead of `Router`';
     }
     this._baseUrl = baseUrl;
     this._baseComponent = baseComponent;
+    this._config = config;
   }
 
-  getXML(config: ?XmlConfig): string {
+  getXML(): string {
     const paths = componentToPaths(this._baseComponent);
-    return pathsToXml(this._baseUrl, paths, config);
+    return pathsToXml(this._baseUrl, paths, this._config);
   }
 
   save(path: string) {
     const paths = componentToPaths(this._baseComponent);
-    const xml = pathsToXml(this._baseUrl, paths);
+    const xml = pathsToXml(this._baseUrl, paths, this._config);
     fs.writeFileSync(path, xml);
   }
 }
@@ -81,10 +83,10 @@ function getComponents(components: any | Array<any>): Array<any> {
 function pathsToXml(
   baseUrl: string,
   paths: Array<string>,
-  config: ?XmlConfig
+  config: ?Config
 ): string {
   const { lastmod, changefreq, priority } = {
-    ...DEFAULT_XML_CONFIG,
+    ...DEFAULT_CONFIG,
     ...config,
   };
 
