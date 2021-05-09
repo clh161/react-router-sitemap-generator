@@ -9,7 +9,7 @@ function Page(): Node {
 
 export default function Router(): Node {
   return (
-    <Switch a={1}>
+    <Switch>
       <Route path="/" />
       <Route path="/react">
         <Page />

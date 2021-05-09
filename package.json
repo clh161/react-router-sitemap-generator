@@ -11,7 +11,8 @@
   "scripts": {
     "lint": "eslint . --fix && prettier . --write && flow",
     "test": "jest",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "flow-typed": "flow-typed install -o -s && flow-typed install jest@26"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
@@ -30,6 +31,7 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "flow-bin": "^0.150.1",
+    "flow-typed": "^3.3.1",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "react": "^17.0.2",

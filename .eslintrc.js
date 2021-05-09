@@ -10,6 +10,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:flowtype/recommended',
   ],
+  ignorePatterns: ['flow-typed/**'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,

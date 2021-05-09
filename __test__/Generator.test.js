@@ -1,3 +1,5 @@
+//@flow strict
+
 import Generator from '../src/Generator';
 import Router from './data/Router';
 import fs from 'fs';
