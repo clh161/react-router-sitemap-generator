@@ -29,37 +29,13 @@ export default class Generator {
   }
 
   getXML(config: ?XmlConfig): string {
-    const { lastmod, changefreq, priority } = {
-      ...DEFAULT_XML_CONFIG,
-      ...config,
-    };
-
     const paths = componentToPaths(this._baseComponent);
-    const options = { compact: true, spaces: 4 };
-    const map = {
-      _declaration: {
-        _attributes: {
-          version: '1.0',
-          encoding: 'UTF-8',
-        },
-      },
-      urlset: {
-        url: paths.map((path) => {
-          return {
-            loc: this._baseUrl + path,
-            lastmod,
-            changefreq,
-            priority,
-          };
-        }),
-        _attributes: { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' },
-      },
-    };
-    return convertor.js2xml(map, options);
+    return pathsToXml(this._baseUrl, paths, config);
   }
 
   save(path: string) {
-    const xml = this.getXML();
+    const paths = componentToPaths(this._baseComponent);
+    const xml = pathsToXml(this._baseUrl, paths);
     fs.writeFileSync(path, xml);
   }
 }
@@ -100,4 +76,37 @@ function getComponents(components: any | Array<any>): Array<any> {
     _components.push(components);
   }
   return _components;
+}
+
+function pathsToXml(
+  baseUrl: string,
+  paths: Array<string>,
+  config: ?XmlConfig
+): string {
+  const { lastmod, changefreq, priority } = {
+    ...DEFAULT_XML_CONFIG,
+    ...config,
+  };
+
+  const options = { compact: true, spaces: 4 };
+  const map = {
+    _declaration: {
+      _attributes: {
+        version: '1.0',
+        encoding: 'UTF-8',
+      },
+    },
+    urlset: {
+      url: paths.map((path) => {
+        return {
+          loc: baseUrl + path,
+          lastmod,
+          changefreq,
+          priority,
+        };
+      }),
+      _attributes: { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' },
+    },
+  };
+  return convertor.js2xml(map, options);
 }
