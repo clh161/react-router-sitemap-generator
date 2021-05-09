@@ -28,52 +28,13 @@ export default class Generator {
     this._baseComponent = baseComponent;
   }
 
-  _generatePath(): Array<string> {
-    const paths = [];
-    const components: Array<any> = [];
-    components.push(this._baseComponent);
-    while (components.length !== 0) {
-      const component = components.pop();
-      if (!React.isValidElement(component)) continue;
-      const { props } = component;
-      if (props == null) continue;
-      const { path, component: propsComponents } = props;
-      React.Children.forEach(component.props.children, (child) => {
-        components.push(...this._getComponents(child));
-      });
-      if (component.type.name === 'Route') {
-        if (path != null) {
-          paths.push(path);
-        }
-        if (typeof propsComponents === 'function') {
-          components.push(
-            ...this._getComponents(propsComponents({ match: { url: path } }))
-          );
-        }
-      }
-    }
-    return paths;
-  }
-
-  _getComponents(components: any | Array<any>): Array<any> {
-    const _components = [];
-    if (Array.isArray(components)) {
-      components?.forEach((child) => {
-        _components.push(child);
-      });
-    } else if (components != null) {
-      _components.push(components);
-    }
-    return _components;
-  }
-
   getXML(config: ?XmlConfig): string {
     const { lastmod, changefreq, priority } = {
       ...DEFAULT_XML_CONFIG,
       ...config,
     };
 
-    const paths = this._generatePath();
+    const paths = generatePath(this._baseComponent);
     const options = { compact: true, spaces: 4 };
     const map = {
       _declaration: {
@@ -101,4 +62,42 @@ export default class Generator {
     const xml = this.getXML();
     fs.writeFileSync(path, xml);
   }
+}
+
+function generatePath(_baseComponent): Array<string> {
+  const paths = [];
+  const components: Array<any> = [_baseComponent];
+  while (components.length !== 0) {
+    const component = components.pop();
+    if (!React.isValidElement(component)) continue;
+    const { props } = component;
+    if (props == null) continue;
+    const { path, component: propsComponents } = props;
+    React.Children.forEach(component.props.children, (child) => {
+      components.push(...getComponents(child));
+    });
+    if (component.type.name === 'Route') {
+      if (path != null) {
+        paths.push(path);
+      }
+      if (typeof propsComponents === 'function') {
+        components.push(
+          ...getComponents(propsComponents({ match: { url: path } }))
+        );
+      }
+    }
+  }
+  return paths;
+}
+
+function getComponents(components: any | Array<any>): Array<any> {
+  const _components = [];
+  if (Array.isArray(components)) {
+    components?.forEach((child) => {
+      _components.push(child);
+    });
+  } else if (components != null) {
+    _components.push(components);
+  }
+  return _components;
 }
