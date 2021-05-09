@@ -64,7 +64,7 @@ export default class Generator {
   }
 }
 
-function generatePath(_baseComponent): Array<string> {
+function generatePath(_baseComponent: any): Array<string> {
   const paths = [];
   const components: Array<any> = [_baseComponent];
   while (components.length !== 0) {
