@@ -1,5 +1,3 @@
 const Generator = require('./Generator');
 
-module.exports = {
-  Generator,
-};
+module.exports = Generator;
