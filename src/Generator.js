@@ -32,19 +32,22 @@ export default class Generator {
   }
 
   getXML(): string {
-    const paths = componentToPaths(this._baseComponent);
+    const paths = componentToPaths(this._baseComponent, this._baseUrl);
     return pathsToXml(this._baseUrl, paths, this._config);
   }
 
   save(path: string) {
-    const paths = componentToPaths(this._baseComponent);
+    const paths = componentToPaths(this._baseComponent, this._baseUrl);
     const xml = pathsToXml(this._baseUrl, paths, this._config);
     fs.writeFileSync(path, xml);
   }
 }
 
-function componentToPaths(_baseComponent: MixedElement): Array<string> {
-  const paths = [];
+function componentToPaths(
+  _baseComponent: MixedElement,
+  baseURL: string
+): Array<URL> {
+  const paths: Array<URL> = [];
   const components: Array<any> = [_baseComponent];
   while (components.length !== 0) {
     const component = components.pop();
@@ -60,7 +63,7 @@ function componentToPaths(_baseComponent: MixedElement): Array<string> {
     );
     if (component.type.name === 'Route') {
       if (path != null) {
-        paths.push(path);
+        paths.push(new URL(path, baseURL));
       }
       if (typeof propsComponents === 'function') {
         components.push(propsComponents({ match: { url: path } }));
@@ -72,7 +75,7 @@ function componentToPaths(_baseComponent: MixedElement): Array<string> {
 
 function pathsToXml(
   baseUrl: string,
-  paths: Array<string>,
+  paths: Array<URL>,
   config: ?Config
 ): string {
   const { lastmod, changefreq, priority } = {
@@ -91,7 +94,7 @@ function pathsToXml(
     urlset: {
       url: paths.map((path) => {
         return {
-          loc: baseUrl + path,
+          loc: path.href,
           lastmod,
           changefreq,
           priority,
