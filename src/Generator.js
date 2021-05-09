@@ -4,6 +4,18 @@ const fs = require('fs');
 const convertor = require('xml-js');
 import React from 'react';
 
+const DEFAULT_XML_CONFIG = {
+  lastmod: new Date().toISOString().slice(0, 10),
+  changefreq: 'monthly',
+  priority: 0.8,
+};
+
+export type XmlConfig = {
+  lastmod?: string,
+  changefreq?: string,
+  priority?: number,
+};
+
 export default class Generator {
   _baseUrl: string;
   _baseComponent: () => any;
@@ -55,9 +67,14 @@ export default class Generator {
     return _components;
   }
 
-  getXML(): string {
+  getXML(config: ?XmlConfig): string {
+    const {lastmod, changefreq, priority} = {
+      ...DEFAULT_XML_CONFIG,
+      ...config,
+    };
+
     const paths = this._generatePath();
-    const options = { compact: true, spaces: 4 };
+    const options = {compact: true, spaces: 4};
     const map = {
       _declaration: {
         _attributes: {
@@ -69,9 +86,9 @@ export default class Generator {
         url: paths.map((path) => {
           return {
             loc: this._baseUrl + path,
-            lastmod: '2021-01-01',
-            changefreq: 'monthly',
-            priority: 0.8,
+            lastmod,
+            changefreq,
+            priority,
           };
         }),
         _attributes: { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' },

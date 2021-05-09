@@ -10,7 +10,7 @@ it('Print xml', () => {
     Router()
   );
   const sitemap = fs.readFileSync('./__test__/data/sitemap.xml').toString();
-  expect(generator.getXML()).toEqual(sitemap);
+  expect(generator.getXML({ lastmod: '2021-01-01' })).toEqual(sitemap);
 });
 
 it('Invalid Component', () => {
