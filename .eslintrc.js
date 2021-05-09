@@ -5,7 +5,11 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'plugin:flowtype/recommended',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
