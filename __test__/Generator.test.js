@@ -7,7 +7,8 @@ import fs from 'fs';
 it('Print xml', () => {
   const generator = new Generator(
     'https://react-router-sitemap-generator.com',
-    Router()
+    Router(),
+    { lastmod: '2021-01-01' }
   );
   const sitemap = fs.readFileSync('./__test__/data/sitemap.xml').toString();
   expect(generator.getXML()).toEqual(sitemap);
