@@ -38,7 +38,7 @@ import Router from './component/Router'; //import your react router component
 
 const generator = new Generator(
   'https://react-router-sitemap-generator.com',
-  Router
+  Router()
 );
 generator.save('public/sitemap.xml');
 ```
