@@ -15,6 +15,16 @@ export default function Router() {
       </Route>
       <Route path="/sitemap" />
       <Route path="/generator" />
+      <Route
+        path="/nested"
+        component={({ match }) => (
+          <Switch>
+            <Route path={match.url + '/nested-child'}>
+              <Page />
+            </Route>
+          </Switch>
+        )}
+      />
       <Route />
     </Switch>
   );

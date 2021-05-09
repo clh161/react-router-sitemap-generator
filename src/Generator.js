@@ -17,11 +17,18 @@ export default class Generator {
       const component = components.pop();
       const { props } = component;
       if (props != null) {
-        const { children, path } = props;
+        const {
+          children: nestedComponent,
+          path,
+          component: propsComponents,
+        } = props;
         if (path != null) {
           this._paths.push(path);
         }
-        components.push(...this._getComponents(children));
+        components.push(...this._getComponents(nestedComponent));
+        components.push(
+          ...this._getComponents(propsComponents?.({ match: { url: path } }))
+        );
       }
     }
   }
