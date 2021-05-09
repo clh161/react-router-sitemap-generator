@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const convertor = require('xml-js');
+import React from 'react';
 
 export default class Generator {
   _paths: Array<string> = [];
@@ -9,6 +10,9 @@ export default class Generator {
   _baseComponent: () => any;
 
   constructor(baseUrl: string, baseComponent: any) {
+    if (!React.isValidElement(baseComponent)) {
+      throw 'Invalid component. Try `Router()` instead of `Router`';
+    }
     this._baseUrl = baseUrl;
     this._baseComponent = baseComponent;
   }
@@ -16,7 +20,7 @@ export default class Generator {
   _generate() {
     this._paths = [];
     const components = [];
-    components.push(this._baseComponent());
+    components.push(this._baseComponent);
     while (components.length !== 0) {
       const component = components.pop();
       const { props } = component;
