@@ -1,4 +1,4 @@
-import Generator from '../lib/Generator';
+import Generator from '../src/Generator';
 import Router from './data/Router1';
 import fs from 'fs';
 

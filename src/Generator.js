@@ -1,5 +1,4 @@
 const fs = require('fs');
-var getDirName = require('path').dirname;
 const convertor = require('xml-js');
 export default class Generator {
   _paths = [];
