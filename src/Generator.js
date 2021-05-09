@@ -1,5 +1,6 @@
 const fs = require('fs');
 const convertor = require('xml-js');
+import React from 'react';
 export default class Generator {
   _paths = [];
 
@@ -17,18 +18,24 @@ export default class Generator {
       const { props } = component;
       if (props != null) {
         const { children, path } = props;
-        if (Array.isArray(children)) {
-          children?.forEach((child) => {
-            components.push(child);
-          });
-        } else if (children != null) {
-          components.push(children);
-        }
         if (path != null) {
           this._paths.push(path);
         }
+        components.push(...this._getComponents(children));
       }
     }
+  }
+
+  _getComponents(components) {
+    const _components = [];
+    if (Array.isArray(components)) {
+      components?.forEach((child) => {
+        _components.push(child);
+      });
+    } else if (components != null) {
+      _components.push(components);
+    }
+    return _components;
   }
 
   getXML() {
