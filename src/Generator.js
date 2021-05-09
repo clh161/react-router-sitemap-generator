@@ -19,7 +19,7 @@ export default class Generator {
 
   _generate() {
     this._paths = [];
-    const components = [];
+    const components: Array<any> = [];
     components.push(this._baseComponent);
     while (components.length !== 0) {
       const component = components.pop();
