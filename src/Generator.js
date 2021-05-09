@@ -5,7 +5,6 @@ const convertor = require('xml-js');
 import React from 'react';
 
 export default class Generator {
-  _paths: Array<string> = [];
   _baseUrl: string;
   _baseComponent: () => any;
 
@@ -17,8 +16,8 @@ export default class Generator {
     this._baseComponent = baseComponent;
   }
 
-  _generate() {
-    this._paths = [];
+  _generatePath(): Array<string> {
+    const paths = [];
     const components: Array<any> = [];
     components.push(this._baseComponent);
     while (components.length !== 0) {
@@ -32,7 +31,7 @@ export default class Generator {
       });
       if (component.type.name === 'Route') {
         if (path != null) {
-          this._paths.push(path);
+          paths.push(path);
         }
         if (typeof propsComponents === 'function') {
           components.push(
@@ -41,6 +40,7 @@ export default class Generator {
         }
       }
     }
+    return paths;
   }
 
   _getComponents(components: any | Array<any>): Array<any> {
@@ -56,7 +56,7 @@ export default class Generator {
   }
 
   getXML(): string {
-    this._generate();
+    const paths = this._generatePath();
     const options = { compact: true, spaces: 4 };
     const map = {
       _declaration: {
@@ -66,7 +66,7 @@ export default class Generator {
         },
       },
       urlset: {
-        url: this._paths.map((path) => {
+        url: paths.map((path) => {
           return {
             loc: this._baseUrl + path,
             lastmod: '2021-01-01',
