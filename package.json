@@ -8,6 +8,11 @@
   "repository": "https://github.com/clh161/react-router-sitemap-generator",
   "author": "Jacob Ho",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "react-router",
+    "sitemap"
+  ],
   "scripts": {
     "lint": "eslint . --fix && prettier . --write && flow",
     "test": "jest",
