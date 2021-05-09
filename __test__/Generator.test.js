@@ -12,3 +12,11 @@ it('Print xml', () => {
   const sitemap = fs.readFileSync('./__test__/data/sitemap.xml').toString();
   expect(generator.getXML()).toEqual(sitemap);
 });
+
+it('Invalid Component', () => {
+  [123, '123', () => {}, Router].forEach((component) => {
+    expect(() => new Generator('', component)).toThrow(
+      'Invalid component. Try `Router()` instead of `Router`'
+    );
+  });
+});
