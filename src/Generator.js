@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const convertor = require('xml-js');
+import type { MixedElement } from 'react';
 import React from 'react';
 
 const DEFAULT_CONFIG = {
@@ -18,10 +19,10 @@ export type Config = {
 
 export default class Generator {
   _baseUrl: string;
-  _baseComponent: () => any;
+  _baseComponent: MixedElement;
   _config: ?Config;
 
-  constructor(baseUrl: string, baseComponent: any, config?: Config) {
+  constructor(baseUrl: string, baseComponent: MixedElement, config?: Config) {
     if (!React.isValidElement(baseComponent)) {
       throw 'Invalid component. Try `Router()` instead of `Router`';
     }
@@ -42,7 +43,7 @@ export default class Generator {
   }
 }
 
-function componentToPaths(_baseComponent: any): Array<string> {
+function componentToPaths(_baseComponent: MixedElement): Array<string> {
   const paths = [];
   const components: Array<any> = [_baseComponent];
   while (components.length !== 0) {
@@ -68,8 +69,10 @@ function componentToPaths(_baseComponent: any): Array<string> {
   return paths;
 }
 
-function getComponents(components: any | Array<any>): Array<any> {
-  const _components = [];
+function getComponents(
+  components: MixedElement | Array<MixedElement>
+): Array<MixedElement> {
+  const _components: Array<MixedElement> = [];
   if (Array.isArray(components)) {
     components?.forEach((child) => {
       _components.push(child);
