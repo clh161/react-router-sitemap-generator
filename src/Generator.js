@@ -35,7 +35,6 @@ export default class Generator {
           this._paths.push(path);
         }
         if (typeof propsComponents === 'function') {
-          console.log(component);
           components.push(
             ...this._getComponents(propsComponents({ match: { url: path } }))
           );
