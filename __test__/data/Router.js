@@ -1,9 +1,13 @@
+//@flow strict
+
 import { Route, Switch } from 'react-router-dom';
 import React from 'react';
+import type { Node } from 'react';
+function Page(): Node {
+  return <div />;
+}
 
-function Page() {}
-
-export default function Router() {
+export default function Router(): Node {
   return (
     <Switch a={1}>
       <Route path="/" />
