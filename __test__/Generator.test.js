@@ -21,11 +21,3 @@ it('Invalid Component', () => {
     );
   });
 });
-
-it('Invalid Component', () => {
-  [123, '123', () => {}, Router].forEach((component) => {
-    expect(() => new Generator('', component)).toThrow(
-      'Invalid component. Try `Router()` instead of `Router`'
-    );
-  });
-});
