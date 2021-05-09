@@ -1,11 +1,15 @@
+//@flow strict
+
 import { Route, Switch } from 'react-router-dom';
 import React from 'react';
+import type { Node } from 'react';
+function Page(): Node {
+  return <div />;
+}
 
-function Page() {}
-
-export default function Router() {
+export default function Router(): Node {
   return (
-    <Switch a={1}>
+    <Switch>
       <Route path="/" />
       <Route path="/react">
         <Page />
@@ -21,6 +25,7 @@ export default function Router() {
           <Switch>
             <Route path={match.url + '/nested-child'}>
               <Page />
+              <Page path={'/path-should-not-included'} />
             </Route>
           </Switch>
         )}

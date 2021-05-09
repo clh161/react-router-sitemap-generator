@@ -5,7 +5,12 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'plugin:flowtype/recommended',
+  ],
+  ignorePatterns: ['flow-typed/**'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -13,7 +18,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'flowtype'],
   rules: {
     'no-underscore-dangle': ['off'],
     'react/jsx-filename-extension': ['off'],
