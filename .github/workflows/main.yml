@@ -40,9 +40,6 @@ jobs:
       - run: yarn test
   eslint:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./web
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
