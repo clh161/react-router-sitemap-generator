@@ -23,20 +23,20 @@ export default class Generator {
     components.push(this._baseComponent);
     while (components.length !== 0) {
       const component = components.pop();
-      const { props } = component;
-      if (props != null) {
-        const { path, component: propsComponents } = props;
-        React.Children.forEach(component.props.children, (child) => {
-          if (React.isValidElement(child)) {
+      if (React.isValidElement(component)) {
+        const { props } = component;
+        if (props != null) {
+          const { path, component: propsComponents } = props;
+          React.Children.forEach(component.props.children, (child) => {
             components.push(...this._getComponents(child));
+          });
+          if (path != null && component.type.name === 'Route') {
+            this._paths.push(path);
           }
-        });
-        if (path != null && component.type.name === 'Route') {
-          this._paths.push(path);
+          components.push(
+            ...this._getComponents(propsComponents?.({ match: { url: path } }))
+          );
         }
-        components.push(
-          ...this._getComponents(propsComponents?.({ match: { url: path } }))
-        );
       }
     }
   }
