@@ -68,13 +68,13 @@ export default class Generator {
   }
 
   getXML(config: ?XmlConfig): string {
-    const {lastmod, changefreq, priority} = {
+    const { lastmod, changefreq, priority } = {
       ...DEFAULT_XML_CONFIG,
       ...config,
     };
 
     const paths = this._generatePath();
-    const options = {compact: true, spaces: 4};
+    const options = { compact: true, spaces: 4 };
     const map = {
       _declaration: {
         _attributes: {
