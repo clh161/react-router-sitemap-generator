@@ -43,7 +43,7 @@ export default class Generator {
     }
   }
 
-  _getComponents(components: any): any {
+  _getComponents(components: any | Array<any>): Array<any> {
     const _components = [];
     if (Array.isArray(components)) {
       components?.forEach((child) => {
