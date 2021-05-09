@@ -1,10 +1,14 @@
+// @flow strict
+
 const fs = require('fs');
 const convertor = require('xml-js');
 
 export default class Generator {
-  _paths = [];
+  _paths: Array<string> = [];
+  _baseUrl: string;
+  _baseComponent: () => any;
 
-  constructor(baseUrl, baseComponent) {
+  constructor(baseUrl: string, baseComponent: any) {
     this._baseUrl = baseUrl;
     this._baseComponent = baseComponent;
   }
@@ -33,7 +37,7 @@ export default class Generator {
     }
   }
 
-  _getComponents(components) {
+  _getComponents(components: any): any {
     const _components = [];
     if (Array.isArray(components)) {
       components?.forEach((child) => {
@@ -45,7 +49,7 @@ export default class Generator {
     return _components;
   }
 
-  getXML() {
+  getXML(): string {
     this._generate();
     const options = { compact: true, spaces: 4 };
     const map = {
@@ -70,7 +74,7 @@ export default class Generator {
     return convertor.js2xml(map, options);
   }
 
-  save(path) {
+  save(path: string) {
     const xml = this.getXML();
     fs.writeFileSync(path, xml);
   }

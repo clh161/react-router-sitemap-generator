@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'flowtype'],
   rules: {
     'no-underscore-dangle': ['off'],
     'react/jsx-filename-extension': ['off'],
