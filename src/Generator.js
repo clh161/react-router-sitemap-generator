@@ -55,7 +55,7 @@ function componentToPaths(_baseComponent: MixedElement): Array<string> {
     React.Children.forEach(
       component?.props?.children,
       (child: MixedElement) => {
-        components.push(...getComponents(child));
+        components.push(child);
       }
     );
     if (component.type.name === 'Route') {
@@ -63,27 +63,11 @@ function componentToPaths(_baseComponent: MixedElement): Array<string> {
         paths.push(path);
       }
       if (typeof propsComponents === 'function') {
-        components.push(
-          ...getComponents(propsComponents({ match: { url: path } }))
-        );
+        components.push(propsComponents({ match: { url: path } }));
       }
     }
   }
   return paths;
-}
-
-function getComponents(
-  components: MixedElement | Array<MixedElement>
-): Array<MixedElement> {
-  const _components: Array<MixedElement> = [];
-  if (Array.isArray(components)) {
-    components?.forEach((child) => {
-      _components.push(child);
-    });
-  } else if (components != null) {
-    _components.push(components);
-  }
-  return _components;
 }
 
 function pathsToXml(
