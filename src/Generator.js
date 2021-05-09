@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const convertor = require('xml-js');
+import type { MixedElement } from 'react';
 import React from 'react';
 
 const DEFAULT_CONFIG = {
@@ -18,10 +19,10 @@ export type Config = {
 
 export default class Generator {
   _baseUrl: string;
-  _baseComponent: () => any;
+  _baseComponent: MixedElement;
   _config: ?Config;
 
-  constructor(baseUrl: string, baseComponent: any, config?: Config) {
+  constructor(baseUrl: string, baseComponent: MixedElement, config?: Config) {
     if (!React.isValidElement(baseComponent)) {
       throw 'Invalid component. Try `Router()` instead of `Router`';
     }
@@ -31,19 +32,22 @@ export default class Generator {
   }
 
   getXML(): string {
-    const paths = componentToPaths(this._baseComponent);
+    const paths = componentToPaths(this._baseComponent, this._baseUrl);
     return pathsToXml(this._baseUrl, paths, this._config);
   }
 
   save(path: string) {
-    const paths = componentToPaths(this._baseComponent);
+    const paths = componentToPaths(this._baseComponent, this._baseUrl);
     const xml = pathsToXml(this._baseUrl, paths, this._config);
     fs.writeFileSync(path, xml);
   }
 }
 
-function componentToPaths(_baseComponent: any): Array<string> {
-  const paths = [];
+function componentToPaths(
+  _baseComponent: MixedElement,
+  baseURL: string
+): Array<URL> {
+  const paths: Array<URL> = [];
   const components: Array<any> = [_baseComponent];
   while (components.length !== 0) {
     const component = components.pop();
@@ -51,38 +55,27 @@ function componentToPaths(_baseComponent: any): Array<string> {
     const { props } = component;
     if (props == null) continue;
     const { path, component: propsComponents } = props;
-    React.Children.forEach(component.props.children, (child) => {
-      components.push(...getComponents(child));
-    });
+    React.Children.forEach(
+      component?.props?.children,
+      (child: MixedElement) => {
+        components.push(child);
+      }
+    );
     if (component.type.name === 'Route') {
-      if (path != null) {
-        paths.push(path);
+      if (path != null && typeof path === 'string') {
+        paths.push(new URL(path, baseURL));
       }
       if (typeof propsComponents === 'function') {
-        components.push(
-          ...getComponents(propsComponents({ match: { url: path } }))
-        );
+        components.push(propsComponents({ match: { url: path } }));
       }
     }
   }
   return paths;
 }
 
-function getComponents(components: any | Array<any>): Array<any> {
-  const _components = [];
-  if (Array.isArray(components)) {
-    components?.forEach((child) => {
-      _components.push(child);
-    });
-  } else if (components != null) {
-    _components.push(components);
-  }
-  return _components;
-}
-
 function pathsToXml(
   baseUrl: string,
-  paths: Array<string>,
+  paths: Array<URL>,
   config: ?Config
 ): string {
   const { lastmod, changefreq, priority } = {
@@ -101,7 +94,7 @@ function pathsToXml(
     urlset: {
       url: paths.map((path) => {
         return {
-          loc: baseUrl + path,
+          loc: path.href,
           lastmod,
           changefreq,
           priority,
