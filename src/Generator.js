@@ -17,9 +17,13 @@ export default class Generator {
       const { props } = component;
       if (props != null) {
         const { children, path } = props;
-        children?.forEach((child) => {
-          components.push(child);
-        });
+        if (Array.isArray(children)) {
+          children?.forEach((child) => {
+            components.push(child);
+          });
+        } else if (children != null) {
+          components.push(children);
+        }
         if (path != null) {
           this._paths.push(path);
         }

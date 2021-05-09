@@ -1,5 +1,5 @@
 import Generator from '../src/Generator';
-import Router from './data/Router1';
+import Router from './data/Router';
 import fs from 'fs';
 
 it('Print xml', () => {
@@ -7,6 +7,6 @@ it('Print xml', () => {
     'https://react-router-sitemap-generator.com',
     Router
   );
-  const sitemap = fs.readFileSync('./__test__/data/sitemap1.xml').toString();
+  const sitemap = fs.readFileSync('./__test__/data/sitemap.xml').toString();
   expect(generator.getXML()).toEqual(sitemap);
 });
