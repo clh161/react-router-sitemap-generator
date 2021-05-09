@@ -34,7 +34,7 @@ export default class Generator {
       ...config,
     };
 
-    const paths = generatePath(this._baseComponent);
+    const paths = componentToPaths(this._baseComponent);
     const options = { compact: true, spaces: 4 };
     const map = {
       _declaration: {
@@ -64,7 +64,7 @@ export default class Generator {
   }
 }
 
-function generatePath(_baseComponent: any): Array<string> {
+function componentToPaths(_baseComponent: any): Array<string> {
   const paths = [];
   const components: Array<any> = [_baseComponent];
   while (components.length !== 0) {
