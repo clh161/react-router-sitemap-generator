@@ -1,6 +1,5 @@
 const fs = require('fs');
 const convertor = require('xml-js');
-import React from 'react';
 
 export default class Generator {
   _paths = [];
