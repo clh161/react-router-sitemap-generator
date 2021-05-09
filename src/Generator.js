@@ -30,13 +30,16 @@ export default class Generator {
       React.Children.forEach(component.props.children, (child) => {
         components.push(...this._getComponents(child));
       });
-      if (path != null && component.type.name === 'Route') {
-        this._paths.push(path);
-      }
-      if (typeof propsComponents === 'function') {
-        components.push(
-          ...this._getComponents(propsComponents({ match: { url: path } }))
-        );
+      if (component.type.name === 'Route') {
+        if (path != null) {
+          this._paths.push(path);
+        }
+        if (typeof propsComponents === 'function') {
+          console.log(component);
+          components.push(
+            ...this._getComponents(propsComponents({ match: { url: path } }))
+          );
+        }
       }
     }
   }
