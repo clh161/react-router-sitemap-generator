@@ -49,7 +49,12 @@ export default class Generator {
     this._generate();
     const options = { compact: true, spaces: 4 };
     const map = {
-      xml: '<?xml version="1.0" encoding="UTF-8"?>',
+      _declaration: {
+        _attributes: {
+          version: '1.0',
+          encoding: 'UTF-8',
+        },
+      },
       urlset: {
         url: this._paths.map((path) => {
           return {
@@ -59,7 +64,7 @@ export default class Generator {
             priority: 0.8,
           };
         }),
-        _attributes: { version: '1.0', encoding: 'utf-8' },
+        _attributes: { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' },
       },
     };
     return convertor.js2xml(map, options);
