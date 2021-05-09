@@ -62,7 +62,7 @@ function componentToPaths(
       }
     );
     if (component.type.name === 'Route') {
-      if (path != null) {
+      if (path != null && typeof path === 'string') {
         paths.push(new URL(path, baseURL));
       }
       if (typeof propsComponents === 'function') {
