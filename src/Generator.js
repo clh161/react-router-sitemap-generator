@@ -52,9 +52,12 @@ function componentToPaths(_baseComponent: MixedElement): Array<string> {
     const { props } = component;
     if (props == null) continue;
     const { path, component: propsComponents } = props;
-    React.Children.forEach(component.props.children, (child) => {
-      components.push(...getComponents(child));
-    });
+    React.Children.forEach(
+      component?.props?.children,
+      (child: MixedElement) => {
+        components.push(...getComponents(child));
+      }
+    );
     if (component.type.name === 'Route') {
       if (path != null) {
         paths.push(path);
