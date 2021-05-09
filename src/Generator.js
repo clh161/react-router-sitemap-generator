@@ -1,6 +1,7 @@
 const fs = require('fs');
 const convertor = require('xml-js');
 import React from 'react';
+
 export default class Generator {
   _paths = [];
 
@@ -22,7 +23,7 @@ export default class Generator {
           path,
           component: propsComponents,
         } = props;
-        if (path != null) {
+        if (path != null && component.type.name === 'Route') {
           this._paths.push(path);
         }
         components.push(...this._getComponents(nestedComponent));

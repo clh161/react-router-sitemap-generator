@@ -21,6 +21,7 @@ export default function Router() {
           <Switch>
             <Route path={match.url + '/nested-child'}>
               <Page />
+              <Page path={'/path-should-not-included'} />
             </Route>
           </Switch>
         )}
