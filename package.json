@@ -20,7 +20,7 @@
     "flow-typed": "flow-typed install -o -s && flow-typed install jest@26"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.5",
+    "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.3",
     "@babel/node": "^7.14.7",
     "@babel/preset-env": "^7.14.5",
