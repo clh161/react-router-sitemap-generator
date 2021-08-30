@@ -40,7 +40,7 @@
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.1"
   },
   "dependencies": {
     "fs": "^0.0.1-security",
