@@ -51,7 +51,7 @@ generator.save('public/sitemap.xml');
 ### Run generator file
 
 ```shell
-yarb run babel-node sitemap.js
+yarn run babel-node sitemap.js
 ```
 
 ## Roadmap
