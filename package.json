@@ -35,7 +35,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "flow-bin": "^0.157.0",
+    "flow-bin": "^0.160.2",
     "flow-typed": "^3.3.1",
     "jest": "^27.2.3",
     "prettier": "^2.3.2",
