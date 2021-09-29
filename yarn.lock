@@ -317,12 +317,12 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/node@^7.14.9":
-  version "7.14.9"
-  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.14.9.tgz#c15b1c8ecb33c079cb7666c8b4861791150c7aa1"
-  integrity sha512-7QJvGn3ID2TjoFst3UdLu3LOxn/Q6Nhr/mo0MENstbPHehl/0wnod2gmVDB+zDxRL6pFFS7z0WeBK3b94k4CLg==
+"@babel/node@^7.15.4":
+  version "7.15.4"
+  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.15.4.tgz#aa22f08e5d95354467a09e2bcd51d3565204dd02"
+  integrity sha512-UZue+j8p5aKTaVjvy5psYmqLHqmz+9cIboAFoa97S1xeZyUr0gT6KzXB8ZkfBIsP/u79biOdjGHVXBXnW3rVfw==
   dependencies:
-    "@babel/register" "^7.14.5"
+    "@babel/register" "^7.15.3"
     commander "^4.0.1"
     core-js "^3.16.0"
     node-environment-flags "^1.0.5"
@@ -1004,10 +1004,10 @@
     "@babel/plugin-transform-react-jsx-development" "^7.14.5"
     "@babel/plugin-transform-react-pure-annotations" "^7.14.5"
 
-"@babel/register@^7.14.5":
-  version "7.14.5"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.14.5.tgz#d0eac615065d9c2f1995842f85d6e56c345f3233"
-  integrity sha512-TjJpGz/aDjFGWsItRBQMOFTrmTI9tr79CHOK+KIvLeCkbxuOAk2M5QHjvruIMGoo9OuccMh5euplPzc5FjAKGg==
+"@babel/register@^7.15.3":
+  version "7.15.3"
+  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.15.3.tgz#6b40a549e06ec06c885b2ec42c3dd711f55fe752"
+  integrity sha512-mj4IY1ZJkorClxKTImccn4T81+UKTo4Ux0+OFSV9hME1ooqS9UV+pJ6BjD0qXPK4T3XW/KNa79XByjeEMZz+fw==
   dependencies:
     clone-deep "^4.0.1"
     find-cache-dir "^2.0.0"
@@ -2661,12 +2661,12 @@ eslint-module-utils@^2.6.2:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-flowtype@^5.9.0:
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-5.9.0.tgz#8d2d81d3d79bb53470ed62b97409b31684757e30"
-  integrity sha512-aBUVPA5Wt0XyuV3Wg8flfVqYJR6yR2nRLuyPwoTjCg5VTk4G1X1zQpInr39tUGgRxqrA+d+B9GYK4+/d1i0Rfw==
+eslint-plugin-flowtype@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-6.1.0.tgz#626f44d9adbdb681644accd5fa29dffcb0d6d531"
+  integrity sha512-md72y02Gq/1mmLkW31wPpUmjT0CSYHbFA1IVfkQ1kViaFrKYGR1yCWKS1THqz0hmoIUlx8Jm7NHa4B6lDvJj3g==
   dependencies:
-    lodash "^4.17.15"
+    lodash "^4.17.21"
     string-natural-compare "^3.0.1"
 
 eslint-plugin-import@^2.24.0:
@@ -3033,10 +3033,10 @@ flatted@^3.1.0:
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.1.1.tgz"
   integrity sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
 
-flow-bin@^0.157.0:
-  version "0.157.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.157.0.tgz#3164b39e17e1a1695d2ace5d4e8d3088bebb3e19"
-  integrity sha512-SP70r4iBb4a+0NZV1+MtAJYZXGoFp1XvfjirNyeuJiGIXtllHcmJlJWyU1wJQ/fXSFUwY7CcnBNK8cd8PyuP9Q==
+flow-bin@^0.160.2:
+  version "0.160.2"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.160.2.tgz#4d579f6bbd48ca975e13237b66e503e0c519c8b9"
+  integrity sha512-vrsiPwcqdaBsuQmPZXjF0tdKqgoVc2wH+nHamvqFzvgnQLJMLN+N0seqaOMH8t/3YKnAEbY/uZ440mALE/+WLw==
 
 flow-typed@^3.3.1:
   version "3.3.1"
@@ -4392,7 +4392,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.20, lodash@^4.7.0:
+lodash@^4.17.14, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
