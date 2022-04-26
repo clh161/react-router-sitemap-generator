@@ -14,7 +14,7 @@
     "sitemap"
   ],
   "scripts": {
-    "lint": "eslint . --fix && prettier . --write && flow",
+    "lint": "eslint . --fix && prettier . --write && flow && tsc",
     "test": "jest",
     "build": "babel src --out-dir dist",
     "flow-typed": "flow-typed install -o -s && flow-typed install jest@26"

@@ -1,0 +1,26 @@
+{
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./__test__/**/*.ts",
+    "./__test__/**/*.tsx"
+  ],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  }
+}
