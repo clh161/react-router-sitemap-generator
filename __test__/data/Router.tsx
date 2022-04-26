@@ -1,13 +1,15 @@
-//@flow strict
-
 import { Route, Switch } from 'react-router-dom';
-import React from 'react';
-import type { Node } from 'react';
-function Page(): Node {
+import React, { ReactElement } from 'react';
+
+type PageProps = {
+  someProps?: string;
+  path?: string;
+};
+function Page({}: PageProps): ReactElement {
   return <div />;
 }
 
-export default function Router(): Node {
+export default function Router(): ReactElement {
   return (
     <Switch>
       <Route path="/" />
